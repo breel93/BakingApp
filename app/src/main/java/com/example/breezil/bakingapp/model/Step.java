@@ -1,13 +1,18 @@
 package com.example.breezil.bakingapp.model;
 
+import android.arch.persistence.room.Entity;
+import android.arch.persistence.room.PrimaryKey;
 import android.os.Parcel;
 import android.os.Parcelable;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+
+@Entity
 public class Step implements Parcelable {
 
+    @PrimaryKey
     @SerializedName("id")
     @Expose
     private int id;
@@ -24,7 +29,7 @@ public class Step implements Parcelable {
     @Expose
     private String thumbnailURL;
 
-
+    private int recipeId;
 
 
     public Step(int id, String shortDescription, String description, String videoURL, String thumbnailURL) {
@@ -96,6 +101,14 @@ public class Step implements Parcelable {
         this.thumbnailURL = thumbnailURL;
     }
 
+
+    public int getRecipeId() {
+        return recipeId;
+    }
+
+    public void setRecipeId(int recipeId) {
+        this.recipeId = recipeId;
+    }
 
 
     @Override

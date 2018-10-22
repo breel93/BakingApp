@@ -1,12 +1,22 @@
 package com.example.breezil.bakingapp.model;
 
+import android.arch.persistence.room.Entity;
+import android.arch.persistence.room.PrimaryKey;
 import android.os.Parcel;
 import android.os.Parcelable;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+
+@Entity
 public class Ingredient implements Parcelable {
+
+    @PrimaryKey(autoGenerate = true)
+    private int ingredientId;
+
+    private int recipeId;
+
     @SerializedName("quantity")
     @Expose
     private double quantity;
@@ -65,6 +75,22 @@ public class Ingredient implements Parcelable {
 
     public void setIngredient(String ingredient) {
         this.ingredient = ingredient;
+    }
+
+    public int getIngredientId() {
+        return ingredientId;
+    }
+
+    public void setIngredientId(int ingredientId) {
+        this.ingredientId = ingredientId;
+    }
+
+    public int getRecipeId() {
+        return recipeId;
+    }
+
+    public void setRecipeId(int recipeId) {
+        this.recipeId = recipeId;
     }
 
     @Override

@@ -1,7 +1,11 @@
 package com.example.breezil.bakingapp.di;
 
 
+import android.app.Application;
+import android.arch.persistence.room.Room;
+
 import com.example.breezil.bakingapp.api.BakingApi;
+import com.example.breezil.bakingapp.db.AppDatabase;
 
 import javax.inject.Singleton;
 
@@ -23,4 +27,9 @@ class ApplicationModule {
                 .build()
                 .create(BakingApi.class);
     }
+//    @Singleton
+//    @Provides
+//    AppDatabase provideDb(Application app) {
+//        return Room.databaseBuilder(app, AppDatabase.class, "bakingapp.db").build();
+//    }
 }
