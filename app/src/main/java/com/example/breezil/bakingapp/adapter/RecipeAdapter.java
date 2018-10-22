@@ -16,21 +16,13 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.RecipeHold
     private List<Recipe> recipeList;
     private RecipeClickListener clickListener;
 
-//    private ClickCallback<Recipe> clickCallback;
-//
-//    public RecipeAdapter(ClickCallback<Recipe> clickCallback) {
-//        this.clickCallback = clickCallback;
-//    }
+
 
 
     public RecipeAdapter(RecipeClickListener clickListener) {
         this.clickListener = clickListener;
     }
 
-    public RecipeAdapter(List<Recipe> recipeList, RecipeClickListener clickListener) {
-        this.recipeList = recipeList;
-        this.clickListener = clickListener;
-    }
 
     @NonNull
     @Override
@@ -72,6 +64,9 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.RecipeHold
 
             itemView.setOnClickListener(v -> clickCallback.showDetails(recipe));
             binding.recipeName.setText(recipe.getName());
+            binding.recipeServing.setText(String.valueOf(recipe.getServings()) + " servings");
+
+
        }
     }
 

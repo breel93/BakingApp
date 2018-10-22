@@ -4,13 +4,19 @@ import android.arch.lifecycle.LifecycleOwner;
 import android.arch.lifecycle.ViewModelProvider;
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.Context;
+import android.content.Intent;
 import android.support.v4.app.FragmentActivity;
+import android.util.Log;
 import android.widget.RemoteViews;
 import android.widget.RemoteViewsService;
+import android.widget.Toast;
 
+import com.example.breezil.bakingapp.R;
 import com.example.breezil.bakingapp.model.Ingredient;
+import com.example.breezil.bakingapp.ui.MainActivity;
 import com.example.breezil.bakingapp.utils.BakingPreference;
 import com.example.breezil.bakingapp.view_model.DetailViewModel;
+import com.example.breezil.bakingapp.view_model.MainViewModel;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,11 +24,13 @@ import java.util.Locale;
 
 import javax.inject.Inject;
 
+import static android.support.constraint.Constraints.TAG;
+
 public class BakingRemoteViewsFactory implements RemoteViewsService.RemoteViewsFactory {
     @Inject
     ViewModelProvider.Factory viewModelFactory;
 
-    private DetailViewModel viewModel;
+    private MainViewModel viewModel;
 
     private List<String> ingredientList;
     private Context context;
@@ -42,23 +50,26 @@ public class BakingRemoteViewsFactory implements RemoteViewsService.RemoteViewsF
 
 
         int recipeId = BakingPreference.getRecipeId(context);
-        if(recipeId != -1 ){
+        Log.d(TAG, "onDataSetChanged: " + recipeId);
+
+        if(recipeId != 0 ){
             ingredientList = new ArrayList<>();
         }
 
-//        viewModel = ViewModelProviders.of((FragmentActivity) context,viewModelFactory)
-//                .get(DetailViewModel.class);
-//        viewModel.setRecipeId(recipeId);
-//
-//        viewModel.getRecipeList().observe((LifecycleOwner) context, recipes -> {
-//            if(recipes != null ){
-//                for(Ingredient ingredient : recipes.get(recipeId).getIngredients())
-//                {
-//                    ingredientList.add(String.format(Locale.getDefault(), "%.1f %s %s\n",
-//                            ingredient.getQuantity(), ingredient.getMeasure(), ingredient.getIngredient()));
-//                }
-//            }
-//        });
+        viewModel = ViewModelProviders.of((FragmentActivity) context,viewModelFactory)
+                .get(MainViewModel.class);
+        viewModel.getRecipes().observe((LifecycleOwner) context, recipes -> {
+            if(recipes != null){
+                for(Ingredient ingredient : recipes.get(recipeId).getIngredients())
+                {
+                    ingredientList.add(String.format(Locale.getDefault(), "%.1f %s %s\n",
+                            ingredient.getQuantity(), ingredient.getMeasure(), ingredient.getIngredient()));
+
+                }
+
+            }
+        });
+
 
     }
 
@@ -74,7 +85,13 @@ public class BakingRemoteViewsFactory implements RemoteViewsService.RemoteViewsF
 
     @Override
     public RemoteViews getViewAt(int position) {
-        return null;
+        RemoteViews remoteViews = new RemoteViews(context.getPackageName(), R.layout.widget_item);
+
+        Intent intent = new Intent();
+        remoteViews.setTextViewText(R.id.widget_item_textview, ingredientList.get(position));
+        remoteViews.setOnClickFillInIntent(R.id.widget_item_textview, intent);
+
+        return remoteViews;
     }
 
     @Override
@@ -84,16 +101,16 @@ public class BakingRemoteViewsFactory implements RemoteViewsService.RemoteViewsF
 
     @Override
     public int getViewTypeCount() {
-        return 0;
+        return 1;
     }
 
     @Override
     public long getItemId(int position) {
-        return 0;
+        return position;
     }
 
     @Override
     public boolean hasStableIds() {
-        return false;
+        return true;
     }
 }

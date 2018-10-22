@@ -53,10 +53,6 @@ public class IngredientFragment extends Fragment {
 
     private Recipe recipe;
 
-
-
-
-
     public IngredientFragment() {
         // Required empty public constructor
     }
@@ -85,7 +81,6 @@ public class IngredientFragment extends Fragment {
 
         binding.addToWidget.setOnClickListener(v -> {
             addWidget();
-            Toast.makeText(getContext(),"Added to widget", Toast.LENGTH_LONG).show();
         });
 
         return binding.getRoot();
@@ -97,9 +92,6 @@ public class IngredientFragment extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-
-        Bundle args = getArguments();
-        recipeId = args.getInt(RECIPE_ID) ;
 
         ingredientAdapter = new IngredientAdapter();
         binding.ingredientList.setAdapter(ingredientAdapter);
@@ -114,6 +106,8 @@ public class IngredientFragment extends Fragment {
             }
         });
 
+       recipeId = detailViewModel.getRecipe().getValue().getId();
+       recipe = detailViewModel.getRecipe().getValue();
 
     }
 
@@ -126,14 +120,13 @@ public class IngredientFragment extends Fragment {
         AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(getContext());
         int[] appWidgetIds = appWidgetManager.getAppWidgetIds(
                 new ComponentName(getContext(), BakingAppWidget.class));
-
         appWidgetManager.notifyAppWidgetViewDataChanged(appWidgetIds, R.id.widget_ingredients_list);
 
         BakingAppWidget.updateAppWidget(getContext(), appWidgetManager, appWidgetIds);
 
+        Toast.makeText(getContext(),String.valueOf(recipeId),Toast.LENGTH_SHORT).show();
+
     }
 
-    private void getIngredientItems(Recipe recipe){
-        ingredientAdapter.setList(recipe.getIngredients());
-    }
+
 }

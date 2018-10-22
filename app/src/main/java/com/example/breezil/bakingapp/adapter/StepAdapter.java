@@ -10,7 +10,6 @@ import com.example.breezil.bakingapp.ClickCallBack.StepClickListener;
 import com.example.breezil.bakingapp.R;
 import com.example.breezil.bakingapp.databinding.StepItemBinding;
 import com.example.breezil.bakingapp.model.Step;
-import com.example.breezil.bakingapp.ClickCallBack.ClickCallback;
 
 import java.util.List;
 

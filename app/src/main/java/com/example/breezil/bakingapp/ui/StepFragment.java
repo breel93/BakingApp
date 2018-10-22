@@ -14,19 +14,15 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
-import com.example.breezil.bakingapp.ClickCallBack.ClickCallback;
 import com.example.breezil.bakingapp.ClickCallBack.StepClickListener;
 import com.example.breezil.bakingapp.R;
 import com.example.breezil.bakingapp.adapter.StepAdapter;
 import com.example.breezil.bakingapp.databinding.FragmentStepBinding;
-import com.example.breezil.bakingapp.model.Recipe;
 import com.example.breezil.bakingapp.model.Step;
 import com.example.breezil.bakingapp.view_model.DetailViewModel;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import javax.inject.Inject;
 

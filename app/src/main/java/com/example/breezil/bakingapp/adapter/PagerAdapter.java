@@ -24,29 +24,20 @@ public class PagerAdapter extends FragmentStatePagerAdapter {
     private static final int Step_Position = 0;
     private static final int Ingredient_Position = 1;
 
-    private Bundle fragmentBundle;
 
-    public PagerAdapter(FragmentManager fm, Context context, Bundle bundle) {
+    public PagerAdapter(FragmentManager fm, Context context) {
         super(fm);
-
         this.context = context;
-        fragmentBundle = bundle;
     }
-
-
 
     @Override
     public Fragment getItem(int position) {
         if(position == Step_Position){
-            StepFragment stepFragment = new StepFragment();
-            stepFragment.setArguments(this.fragmentBundle);
-            return stepFragment;
-//            return new StepFragment();
+
+            return new StepFragment();
         }else{
-            IngredientFragment ingredientFragment = new IngredientFragment();
-            ingredientFragment.setArguments(this.fragmentBundle);
-            return ingredientFragment;
-//            return new IngredientFragment();
+
+            return new IngredientFragment();
         }
 
     }

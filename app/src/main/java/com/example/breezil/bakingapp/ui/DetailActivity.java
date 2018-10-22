@@ -7,14 +7,11 @@ import android.databinding.DataBindingUtil;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
-import android.widget.Toast;
 
-import com.example.breezil.bakingapp.ClickCallBack.ClickCallback;
 import com.example.breezil.bakingapp.R;
 import com.example.breezil.bakingapp.adapter.PagerAdapter;
 import com.example.breezil.bakingapp.databinding.ActivityDetailBinding;
 import com.example.breezil.bakingapp.model.Recipe;
-import com.example.breezil.bakingapp.model.Step;
 import com.example.breezil.bakingapp.view_model.DetailViewModel;
 
 import javax.inject.Inject;
@@ -63,15 +60,8 @@ public class DetailActivity extends DaggerAppCompatActivity implements
         }
 
 
-        Bundle bundle = new Bundle();
-        bundle.putInt("recipe_id",getRecipe().getId());
-        IngredientFragment ingredientFragment = new IngredientFragment();
-        StepFragment stepFragment = new StepFragment();
-        stepFragment.setArguments(bundle);
-        ingredientFragment.setArguments(bundle);
-
         setupToolbar();
-        setupAdapter(bundle);
+        setupAdapter();
 
     }
 
@@ -81,8 +71,10 @@ public class DetailActivity extends DaggerAppCompatActivity implements
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
-    void setupAdapter(Bundle bundle){
-        pagerAdapter = new PagerAdapter(getSupportFragmentManager(),this, bundle);
+
+
+    void setupAdapter(){
+        pagerAdapter = new PagerAdapter(getSupportFragmentManager(),this);
         binding.detailViewpager.setAdapter(pagerAdapter);
         binding.detailTab.setupWithViewPager(binding.detailViewpager);
     }

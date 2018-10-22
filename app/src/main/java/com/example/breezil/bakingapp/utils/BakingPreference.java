@@ -3,6 +3,8 @@ package com.example.breezil.bakingapp.utils;
 import android.content.Context;
 import android.preference.PreferenceManager;
 
+import com.example.breezil.bakingapp.model.Ingredient;
+
 public final class BakingPreference {
 
     static String WIDGET_KEY = "widget_key";
@@ -18,9 +20,12 @@ public final class BakingPreference {
     }
     public static int getRecipeId(Context context){
         return PreferenceManager.getDefaultSharedPreferences(context)
-                .getInt(WIDGET_KEY, -1);
+                .getInt(WIDGET_KEY, 0);
 
     }
+
+
+
 
     public static void setTitle(Context context, String title){
         PreferenceManager.getDefaultSharedPreferences(context).edit()

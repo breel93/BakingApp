@@ -16,8 +16,6 @@ import javax.inject.Inject;
 public class DetailViewModel extends ViewModel {
 
     private final Repository repository;
-//    private LiveData<List<Recipe>> recipeList;
-//    private int recipeId;
 
     private MutableLiveData<Recipe> recipe = new MutableLiveData<>();
     private MutableLiveData<Step> step = new MutableLiveData<>();
@@ -28,8 +26,6 @@ public class DetailViewModel extends ViewModel {
     DetailViewModel(Repository repository) {
         this.repository = repository;
     }
-
-
 
 
 
@@ -78,19 +74,7 @@ public class DetailViewModel extends ViewModel {
     }
 
 
-//    public int totalSteps(int id){
-//        return getRecipeList().getValue().get(id).getSteps().size();
-//    }
-//
-//
-//
-//
-//    public LiveData<List<Recipe>> getRecipeList(){
-//        if(recipeList == null){
-//            recipeList = repository.getRecipes();
-//        }
-//       return recipeList;
-//    }
+
 
 
 

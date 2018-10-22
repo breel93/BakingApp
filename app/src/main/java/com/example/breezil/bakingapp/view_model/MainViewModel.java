@@ -15,6 +15,10 @@ public class MainViewModel extends ViewModel {
     private MutableLiveData<List<Recipe>> recipes;
     private Repository repository;
 
+    private int recipeId;
+
+
+
     @Inject
     public MainViewModel(Repository repository) {
         this.repository = repository;
@@ -26,5 +30,13 @@ public class MainViewModel extends ViewModel {
         }
 
         return recipes;
+    }
+
+    public int getRecipeId() {
+        return recipeId;
+    }
+
+    public void setRecipeId(int recipeId) {
+        this.recipeId = recipeId;
     }
 }
