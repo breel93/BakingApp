@@ -9,7 +9,7 @@ import android.support.v4.app.Fragment;
 import android.os.Bundle;
 
 import com.example.breezil.bakingapp.R;
-import com.example.breezil.bakingapp.adapter.PagerAdapter;
+import com.example.breezil.bakingapp.ui.adapter.PagerAdapter;
 import com.example.breezil.bakingapp.databinding.ActivityDetailBinding;
 import com.example.breezil.bakingapp.model.Recipe;
 import com.example.breezil.bakingapp.view_model.DetailViewModel;

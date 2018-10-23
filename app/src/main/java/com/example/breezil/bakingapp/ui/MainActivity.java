@@ -15,7 +15,7 @@ import android.widget.Toast;
 
 import com.example.breezil.bakingapp.ClickCallBack.RecipeClickListener;
 import com.example.breezil.bakingapp.R;
-import com.example.breezil.bakingapp.adapter.RecipeAdapter;
+import com.example.breezil.bakingapp.ui.adapter.RecipeAdapter;
 import com.example.breezil.bakingapp.databinding.ActivityMainBinding;
 import com.example.breezil.bakingapp.view_model.MainViewModel;
 
@@ -62,7 +62,8 @@ public class MainActivity extends AppCompatActivity {
     }
     private void setupViewModel(){
         MainViewModel viewModel = ViewModelProviders.of(this, viewModelFactory).get(MainViewModel.class);
-        viewModel.getRecipes().observe(this, recipes -> recipeAdapter.setList(recipes));
+        viewModel.getRecipes().observe(this, recipes -> recipeAdapter.setList(recipes.data));
+
     }
 
     private void networkDialog() {

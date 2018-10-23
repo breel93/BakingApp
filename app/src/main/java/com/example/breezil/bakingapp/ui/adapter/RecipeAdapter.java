@@ -1,4 +1,4 @@
-package com.example.breezil.bakingapp.adapter;
+package com.example.breezil.bakingapp.ui.adapter;
 
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;

@@ -10,6 +10,13 @@ import javax.inject.Inject;
 import javax.inject.Provider;
 import javax.inject.Singleton;
 
+/**
+ * More from here Architecture Guide "https://developer.android.com/arch"
+ * Helper code from googlesamples/android-architecture-components:
+ * "https://github.com/googlesamples/android-architecture-components/blob/master/GithubBrowserSample/app/src/main/java/com/android/example/github/viewmodel/GithubViewModelFactory.kt"
+ *
+ */
+
 @Singleton
 public class ViewModelFactory implements ViewModelProvider.Factory {
     private final Map<Class<? extends ViewModel>, Provider<ViewModel>> creators;

@@ -25,8 +25,6 @@ public final class BakingPreference {
     }
 
 
-
-
     public static void setTitle(Context context, String title){
         PreferenceManager.getDefaultSharedPreferences(context).edit()
                 .putString(TITLE,title ).apply();

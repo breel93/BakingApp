@@ -38,7 +38,7 @@
                         android:scaleType="fitXY"
                         android:fitsSystemWindows="true"
                         app:layout_collapseMode="parallax"
-                        app:srcCompat="@drawable/cake" />
+                        app:srcCompat="@drawable/bake" />
                     <android.support.v7.widget.Toolbar
                         android:id="@+id/dtoolbar"
                         android:layout_width="match_parent"

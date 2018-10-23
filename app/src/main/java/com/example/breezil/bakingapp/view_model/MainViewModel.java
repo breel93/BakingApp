@@ -1,22 +1,20 @@
 package com.example.breezil.bakingapp.view_model;
 
 
-import android.arch.lifecycle.MutableLiveData;
+import android.arch.lifecycle.LiveData;
 import android.arch.lifecycle.ViewModel;
 
 import com.example.breezil.bakingapp.model.Recipe;
 import com.example.breezil.bakingapp.repository.Repository;
+import com.example.breezil.bakingapp.utils.helpers.Resource;
 
 import java.util.List;
 
 import javax.inject.Inject;
 
 public class MainViewModel extends ViewModel {
-    private MutableLiveData<List<Recipe>> recipes;
+    private LiveData<Resource<List<Recipe>>> recipes;
     private Repository repository;
-
-    private int recipeId;
-
 
 
     @Inject
@@ -24,7 +22,7 @@ public class MainViewModel extends ViewModel {
         this.repository = repository;
     }
 
-    public  MutableLiveData<List<Recipe>> getRecipes() {
+    public LiveData<Resource<List<Recipe>>> getRecipes() {
         if (recipes == null) {
             recipes = repository.getRecipes();
         }
@@ -32,11 +30,4 @@ public class MainViewModel extends ViewModel {
         return recipes;
     }
 
-    public int getRecipeId() {
-        return recipeId;
-    }
-
-    public void setRecipeId(int recipeId) {
-        this.recipeId = recipeId;
-    }
 }

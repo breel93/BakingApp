@@ -2,7 +2,6 @@ package com.example.breezil.bakingapp.ui;
 
 
 import android.appwidget.AppWidgetManager;
-import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProvider;
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.ComponentName;
@@ -19,17 +18,12 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.example.breezil.bakingapp.R;
-import com.example.breezil.bakingapp.adapter.IngredientAdapter;
+import com.example.breezil.bakingapp.ui.adapter.IngredientAdapter;
 import com.example.breezil.bakingapp.databinding.FragmentIngredientBinding;
-import com.example.breezil.bakingapp.model.Ingredient;
 import com.example.breezil.bakingapp.model.Recipe;
 import com.example.breezil.bakingapp.utils.BakingPreference;
 import com.example.breezil.bakingapp.view_model.DetailViewModel;
 import com.example.breezil.bakingapp.widget.BakingAppWidget;
-import com.example.breezil.bakingapp.widget.WidgetService;
-
-import java.util.List;
-import java.util.Locale;
 
 import javax.inject.Inject;
 
@@ -40,7 +34,6 @@ import dagger.android.support.AndroidSupportInjection;
  */
 public class IngredientFragment extends Fragment {
 
-    private static final String RECIPE_ID = "recipe_id";
 
     @Inject
     ViewModelProvider.Factory viewModelFactory;
@@ -123,8 +116,6 @@ public class IngredientFragment extends Fragment {
         appWidgetManager.notifyAppWidgetViewDataChanged(appWidgetIds, R.id.widget_ingredients_list);
 
         BakingAppWidget.updateAppWidget(getContext(), appWidgetManager, appWidgetIds);
-
-        Toast.makeText(getContext(),String.valueOf(recipeId),Toast.LENGTH_SHORT).show();
 
     }
 

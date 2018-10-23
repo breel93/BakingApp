@@ -17,7 +17,7 @@ import android.view.ViewGroup;
 
 import com.example.breezil.bakingapp.ClickCallBack.StepClickListener;
 import com.example.breezil.bakingapp.R;
-import com.example.breezil.bakingapp.adapter.StepAdapter;
+import com.example.breezil.bakingapp.ui.adapter.StepAdapter;
 import com.example.breezil.bakingapp.databinding.FragmentStepBinding;
 import com.example.breezil.bakingapp.model.Step;
 import com.example.breezil.bakingapp.view_model.DetailViewModel;

@@ -12,7 +12,9 @@ import com.google.gson.annotations.SerializedName;
 @Entity
 public class Step implements Parcelable {
 
-    @PrimaryKey
+    @PrimaryKey(autoGenerate = true)
+    private int roomId;
+
     @SerializedName("id")
     @Expose
     private int id;
@@ -60,6 +62,14 @@ public class Step implements Parcelable {
             return new Step[size];
         }
     };
+
+    public int getRoomId() {
+        return roomId;
+    }
+
+    public void setRoomId(int roomId) {
+        this.roomId = roomId;
+    }
 
     public int getId() {
         return id;

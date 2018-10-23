@@ -1,4 +1,4 @@
-package com.example.breezil.bakingapp.adapter;
+package com.example.breezil.bakingapp.ui.adapter;
 
 import android.content.Context;
 import android.content.res.Resources;
