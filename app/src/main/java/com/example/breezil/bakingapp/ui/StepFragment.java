@@ -29,7 +29,7 @@ import javax.inject.Inject;
 import dagger.android.support.AndroidSupportInjection;
 
 /**
- * A simple {@link Fragment} subclass.
+ * A simple {@link Fragment} subclass..
  */
 public class StepFragment extends Fragment{
 
