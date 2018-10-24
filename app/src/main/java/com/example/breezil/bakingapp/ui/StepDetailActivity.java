@@ -3,6 +3,7 @@ package com.example.breezil.bakingapp.ui;
 
 import android.arch.lifecycle.ViewModelProvider;
 import android.arch.lifecycle.ViewModelProviders;
+import android.content.Context;
 import android.content.Intent;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -46,12 +47,13 @@ public class StepDetailActivity extends AppCompatActivity  implements
 
 
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         AndroidInjection.inject(this);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_step_detail);
+
+
 
         detailViewModel = ViewModelProviders.of(this,viewModelFactory).get(DetailViewModel.class);
 
@@ -71,11 +73,16 @@ public class StepDetailActivity extends AppCompatActivity  implements
 
 
 
-        StepDetailFragment stepDetailFragment = StepDetailFragment.theStep(stepList);
-        getSupportFragmentManager()
-                .beginTransaction()
-                .add(R.id.step_detail_container, stepDetailFragment)
-                .commit();
+        if(savedInstanceState == null){
+
+            StepDetailFragment stepDetailFragment = StepDetailFragment.theStep(stepList);
+            getSupportFragmentManager()
+                    .beginTransaction()
+                    .add(R.id.step_detail_container, stepDetailFragment)
+                    .commit();
+
+        }
+
 
 
         getSupportActionBar().setHomeButtonEnabled(true);
@@ -96,5 +103,11 @@ public class StepDetailActivity extends AppCompatActivity  implements
         } else {
             return null;
         }
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+
     }
 }

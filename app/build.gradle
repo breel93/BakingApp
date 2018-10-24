@@ -4,7 +4,7 @@ android {
     compileSdkVersion 27
     defaultConfig {
         applicationId "com.example.breezil.bakingapp"
-        minSdkVersion 21
+        minSdkVersion 16
         targetSdkVersion 27
         versionCode 1
         versionName "1.0"
@@ -53,7 +53,7 @@ dependencies {
     implementation 'io.reactivex.rxjava2:rxjava:2.1.17'
     implementation 'com.jakewharton.retrofit:retrofit2-rxjava2-adapter:1.0.0'
     implementation "io.reactivex.rxjava2:rxandroid:2.0.2"
-
+    implementation 'com.github.rubensousa:previewseekbar-exoplayer:2.8.1.0'
 
     annotationProcessor 'com.google.dagger:dagger-android-processor:2.15'
     annotationProcessor 'com.google.dagger:dagger-compiler:2.15'

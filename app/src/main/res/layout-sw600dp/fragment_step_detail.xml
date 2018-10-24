@@ -17,7 +17,9 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            android:id="@+id/exo_player"/>
+            android:id="@+id/exo_player"
+            app:fastforward_increment="1000"
+            app:rewind_increment="1000"/>
 
         <TextView
 
@@ -58,7 +60,7 @@
             app:backgroundTint="@color/colorPrimary"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            />
+            android:layout_marginRight="16dp" />
 
         <android.support.design.widget.FloatingActionButton
             android:id="@+id/doneFab"
@@ -71,7 +73,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             android:visibility="gone"
-            />
+            android:layout_marginRight="16dp" />
 
         <android.support.design.widget.FloatingActionButton
             android:id="@+id/previousFab"
@@ -83,7 +85,7 @@
             app:backgroundTint="@color/colorPrimary"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            />
+            android:layout_marginLeft="16dp" />
 
 
     </android.support.constraint.ConstraintLayout>

@@ -7,6 +7,7 @@ import android.content.res.Configuration;
 import android.databinding.DataBindingUtil;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
@@ -17,6 +18,7 @@ import com.example.breezil.bakingapp.R;
 import com.example.breezil.bakingapp.model.Step;
 import com.example.breezil.bakingapp.view_model.DetailViewModel;
 import com.example.breezil.bakingapp.databinding.FragmentStepDetailBinding;
+import com.google.android.exoplayer2.C;
 import com.google.android.exoplayer2.ExoPlayerFactory;
 import com.google.android.exoplayer2.SimpleExoPlayer;
 import com.google.android.exoplayer2.source.ExtractorMediaSource;
@@ -44,7 +46,16 @@ import dagger.android.support.AndroidSupportInjection;
 public class StepDetailFragment extends Fragment  {
 
     private static final String STEP_LIST = "list";
+    private static final String VIDEO_POSITION = "video_position";
+    private static final String PLAY_WHEN_READY = "play_when_ready";
+    private static final String WINDOW_INDEX = "window_index";
+    private static final String STEP_POSITION = "step_position";
+    private static final String STEP = "step";
 
+
+    int windowIndex;
+    long playerPosition;
+    boolean playWhenReady = true;
 
 
     @Inject
@@ -64,7 +75,7 @@ public class StepDetailFragment extends Fragment  {
     private boolean AutoPlay = false;
 
     Step step;
-    private static final String STEP = "step";
+    Uri videoUri;
 
 
 
@@ -89,11 +100,15 @@ public class StepDetailFragment extends Fragment  {
 
 
 
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
         binding = DataBindingUtil.inflate(inflater,R.layout.fragment_step_detail, container,false);
+
+
+
         return binding.getRoot();
     }
 
@@ -118,14 +133,21 @@ public class StepDetailFragment extends Fragment  {
             viewModel.setStep(getStep());
         }
 
-        position = viewModel.getStep().getValue().getId();
+
+
 
         viewModel.setStepsValue(getStepList());
 
         totalSteps = viewModel.getSteps().getValue().size();
 
-        startPlaying(position);
-
+        if(savedInstanceState != null){
+            playWhenReady = savedInstanceState.getBoolean(PLAY_WHEN_READY);
+            windowIndex = savedInstanceState.getInt(WINDOW_INDEX);
+            playerPosition = savedInstanceState.getLong(VIDEO_POSITION);
+            position = savedInstanceState.getInt(STEP_POSITION);
+        }else {
+            position = viewModel.getStep().getValue().getId();
+        }
 
         AutoPlay = true;
 
@@ -180,12 +202,14 @@ public class StepDetailFragment extends Fragment  {
         binding.shortDescription.setText(step.getShortDescription());
         binding.longDescription.setText(step.getDescription());
         String videoUrl = step.getVideoURL();
+
         if (videoUrl.isEmpty()) {
             videoUrl = step.getThumbnailURL();
         }
 
         if (!videoUrl.isEmpty()) {
-            initializePlayer(Uri.parse(videoUrl));
+            videoUri = Uri.parse(videoUrl);
+            initializePlayer(videoUri);
         }
 
     }
@@ -209,6 +233,7 @@ public class StepDetailFragment extends Fragment  {
         simpleExoPlayer.prepare(audio);
         simpleExoPlayer.setPlayWhenReady(AutoPlay);
 
+
     }
     private void releasePlayer(){
         if(simpleExoPlayer != null){
@@ -220,21 +245,74 @@ public class StepDetailFragment extends Fragment  {
     }
 
     @Override
+    public void onStart() {
+        super.onStart();
+        if (Util.SDK_INT > 23) {
+            // initialize player
+            startPlaying(position);
+        }
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        if ((Util.SDK_INT <= 23 || simpleExoPlayer == null)) {
+            // initialize player
+            startPlaying(position);
+        }
+        if(simpleExoPlayer != null){
+            simpleExoPlayer.setPlayWhenReady(playWhenReady);
+            simpleExoPlayer.seekTo(playerPosition);
+        }
+    }
+
+    @Override
     public void onPause() {
         super.onPause();
-        releasePlayer();
+        if(simpleExoPlayer != null){
+            updateStartPosition();
+            if (Util.SDK_INT > 23) {
+                releasePlayer();
+            }
+        }
     }
 
     @Override
     public void onStop() {
         super.onStop();
-        releasePlayer();
+        if(simpleExoPlayer != null){
+            updateStartPosition();
+            if (Util.SDK_INT > 23) {
+                releasePlayer();
+            }
+        }
+
     }
 
     @Override
     public void onDestroyView() {
         super.onDestroyView();
         releasePlayer();
+    }
+
+    @Override
+    public void onSaveInstanceState(@NonNull Bundle outState) {
+        super.onSaveInstanceState(outState);
+        updateStartPosition();
+        outState.putLong(VIDEO_POSITION,playerPosition);
+        outState.putBoolean(PLAY_WHEN_READY,playWhenReady);
+        outState.putInt(WINDOW_INDEX, windowIndex);
+        outState.putInt(STEP_POSITION, position);
+
+
+    }
+
+    private void updateStartPosition(){
+        if(simpleExoPlayer != null){
+            playWhenReady = simpleExoPlayer.getPlayWhenReady();
+            windowIndex = simpleExoPlayer.getCurrentWindowIndex();
+            playerPosition = simpleExoPlayer.getCurrentPosition();
+        }
     }
 
     @Nullable

@@ -11,6 +11,7 @@ import android.provider.Settings;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.widget.Toast;
 
 import com.example.breezil.bakingapp.ClickCallBack.RecipeClickListener;
@@ -74,7 +75,17 @@ public class MainActivity extends AppCompatActivity {
                 .setNegativeButton("No", (dialog, which) -> dialog.dismiss());
         AlertDialog alertDialog = builder.create();
         alertDialog.show();
+        alertDialog.setOnKeyListener((arg0, keyCode, event) -> {
+            // TODO Auto-generated method stub
+            if (keyCode == KeyEvent.KEYCODE_BACK) {
+
+                alertDialog.dismiss();
+            }
+            return true;
+        });
     }
+
+
 
     private boolean internetConnected(){
         ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
