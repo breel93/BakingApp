@@ -21,7 +21,7 @@
 ```
 git clone https://github.com/breel93/BakingApp.git
 ```
-or download zip and extract, open with android studio
+or download [zip](https://github.com/breel93/BakingApp/archive/master.zip) and extract, open with android studio
 
 #### Screen views
 ###### screenshots
