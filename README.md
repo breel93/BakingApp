@@ -30,11 +30,11 @@ or download [zip](https://github.com/breel93/BakingApp/archive/master.zip) and e
 ![a99025b8-5d07-42ad-bc32-59db21b7a009](https://user-images.githubusercontent.com/20865566/48874402-144f1c00-edc1-11e8-8a86-4527a84c1c85.png)
 ![dac13057-47cf-4c32-9f84-70bd40f5fba1](https://user-images.githubusercontent.com/20865566/48874405-144f1c00-edc1-11e8-83f2-cf2cc4e905e9.png)
 ###### landscape 
-![74564fca-4e28-4730-8d1e-92102d7aa83f](https://user-images.githubusercontent.com/20865566/48874409-15804900-edc1-11e8-8449-29cd6061a777.png)
-![bdcb36ed-4346-4a57-8cb9-104f6800cc88](https://user-images.githubusercontent.com/20865566/48874404-144f1c00-edc1-11e8-971d-c3dd7952c0a1.png)
+![74564fca-4e28-4730-8d1e-92102d7aa83f](https://user-images.githubusercontent.com/20865566/48874730-aefc2a80-edc2-11e8-9820-2ea9a698dbaf.png)
+![bdcb36ed-4346-4a57-8cb9-104f6800cc88](https://user-images.githubusercontent.com/20865566/48874731-aefc2a80-edc2-11e8-9489-c42851457ec6.png)
 ###### tablet 
-![f2a22b8f-20cc-43b7-afa2-c39c7f658206](https://user-images.githubusercontent.com/20865566/48874407-14e7b280-edc1-11e8-8bd1-8ef50acb6dac.png)
-![a265b054-aeda-4233-8304-ac406a0e204b](https://user-images.githubusercontent.com/20865566/48874410-15804900-edc1-11e8-9855-b09c8eca0214.png)
+![a265b054-aeda-4233-8304-ac406a0e204b](https://user-images.githubusercontent.com/20865566/48874783-03070f00-edc3-11e8-91ea-5de9a10a062a.png)
+![f2a22b8f-20cc-43b7-afa2-c39c7f658206](https://user-images.githubusercontent.com/20865566/48874785-03070f00-edc3-11e8-84a5-8dec9605844b.png)
 
 ##### Gifs
 ###### portrait 
